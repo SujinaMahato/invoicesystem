@@ -7,6 +7,7 @@ use App\Http\Controllers\ManageSaleController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -75,10 +76,15 @@ Route::put('/term/update/{id}',[ManageSaleController::class,'update'])->name('ma
 Route::delete('/term/{id}',[ManageSaleController::class,'destroy'])->name('manage.delete');
 
 //Purchase Controller
-Route::resource('purchase', PurchaseController::class);
-/*Route::get('/add-purchase', function () {
-    return view('admin.purchase.add-purchase');
-});*/
+
+Route::resource('purchases', PurchaseController::class);
+
+//Sale Controller
+Route::resource('sale', SaleController::class);
+Route::get('/newsale', function () {
+    return view('admin.sale.newsale');
+});
+
 
 
 

@@ -1,87 +1,54 @@
-@include('admin.includes.header')
+@extends('layouts.app')
 @section('content')
-        
-        <!-- Date Section -->
-        <div class="p-4 mb-6 bg-white rounded-lg shadow-lg">
-            <div class="flex items-center space-x-4">
-                <!-- Start Date -->
-                <div class="flex items-center space-x-2">
-                    <label for="start-date" class="font-medium text-gray-700">Start Date</label>
-                    <input type="date" id="start-date" class="p-2 border border-gray-300 rounded-md">
-                </div>
-                <!-- End Date -->
-                <div class="flex items-center space-x-2">
-                    <label for="end-date" class="font-medium text-gray-700">End Date</label>
-                    <input type="date" id="end-date" class="p-2 border border-gray-300 rounded-md">
-                </div>
-                <!-- Find Button -->
-                <button class="px-6 py-2 text-white bg-purple-600 rounded-md hover:bg-green-700">Find</button>
-            </div>
+<div class="p-8 bg-white rounded-lg shadow-md">
+    <h1 class="mb-6 text-2xl font-bold">Manage Sale</h1>
+
+    <!-- Filter by Date Range -->
+    <form method="GET" action="{{ route('sale.index') }}" class="mb-6">
+       
+         <!-- Action Buttons -->
+         <div class="flex justify-end mt-6 space-x-4">
+            <a href="{{ route('sale.create') }}" class="px-4 py-2 text-white bg-purple-500 rounded-md">+ New Sale</a>
         </div>
+    </form>
 
-        <!-- Manage Sale Section -->
-        <div class="p-4 bg-white rounded-lg shadow-lg">
-            <!-- Manage Sale Header with Buttons -->
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xl font-semibold text-gray-800">Manage Sale</h2>
-                <div class="space-x-2">
-                    <button class="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">+ New Sale</button>
-                    <button class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600">+ POS Sale</button>
-                </div>
-            </div>
+    <!-- Sale List Table -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-4 py-2 border">SL</th>
+                    <th class="px-4 py-2 border">Invoice No</th>
+                    <th class="px-4 py-2 border">Customer Name</th>
+                    <th class="px-4 py-2 border">Product Name</th>
+                    <th class="px-4 py-2 border">Date</th>
+                    <th class="px-4 py-2 border">Total Amount</th>
+                    <th class="px-4 py-2 border">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($sales as $sale)
+                    <tr>
+                        <td class="px-4 py-2 border">{{ $loop->iteration }}</td>
+                        <td class="px-4 py-2 border">{{ $sale->id }}</td>
+                        <td class="px-4 py-2 border">{{ $sale->customer->customer_name }}</td>
+                        <td class="px-4 py-2 border">{{ $sale->product_name }}</td>
+                        <td class="px-4 py-2 border">{{ $sale->date }}</td>
+                        <td class="px-4 py-2 border">{{ number_format($sale->total, 2) }}</td>
+                        <td class="px-4 py-2 border">
+                            <a href="{{ route('sale.edit', $sale->id) }}" class="px-2 py-1 text-white bg-blue-500 rounded-md">Edit</a>
+                            <form action="{{ route('sale.destroy', $sale->id) }}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="px-2 py-1 text-white bg-red-500 rounded-md">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-            <!-- Show Entries and Search Input -->
-            <div class="flex items-center justify-between mb-4">
-                <!-- Show Entries -->
-                <div class="flex items-center space-x-2">
-                    <label for="entries" class="text-sm text-gray-600">Show</label>
-                    <select id="entries" class="p-2 border border-gray-300 rounded-md">
-                        <option>10</option>
-                        <option>25</option>
-                        <option>50</option>
-                        <option>100</option>
-                    </select>
-                    <span class="text-sm text-gray-600">entries</span>
-                </div>
-
-                <!-- Search Input -->
-                <div>
-                    <input type="text" placeholder="Search" class="p-2 border border-gray-300 rounded-md">
-                </div>
-            </div>
-
-            <!-- Table -->
-            <div class="overflow-x-auto">
-                <table class="min-w-full bg-white border border-gray-200">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">SL.</th>
-                            <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Invoice No</th>
-                            <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Sale By</th>
-                            <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Customer Name</th>
-                            <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Date</th>
-                            <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Total Amount</th>
-                            <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="7" class="px-6 py-4 font-medium text-right text-gray-500">Total:</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Export Buttons -->
-            <div class="flex items-center justify-between mt-4">
-                <div class="space-x-2">
-                    <button class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-green-700">Copy</button>
-                    <button class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-green-700">CSV</button>
-                    <button class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-green-700">Excel</button>
-                    <button class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-green-700">PDF</button>
-                    <button class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-green-700">Print</button>
-                </div>
-            </div>
-        </div>
+     
     </div>
-    @endsection
+</div>
+@endsection

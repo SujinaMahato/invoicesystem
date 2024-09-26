@@ -1,9 +1,17 @@
 <div :class="{ 'translate-x-0': open, '-translate-x-full': !open }"
-        class="fixed inset-y-0 left-0 w-64 text-white transition-transform duration-300 ease-in-out transform bg-purple-500">
-        <div class="relative p-4">
-            <!-- Sidebar Content -->
+    class="fixed inset-y-0 left-0 w-64 text-white transition-transform duration-300 ease-in-out transform bg-purple-500">
+    <div class="relative h-full">
+        <!-- Scrollable Sidebar Content -->
+        <div class="h-full p-4 overflow-y-auto">
             <div class="mb-8 text-center">
                 <h1 class="text-2xl font-bold">Admin User</h1>
+                <div class="flex justify-center mb-2">
+                    @if (Auth::user() && Auth::user()->usertype === 'admin')
+                        <img src="/images/admin.png" alt="Admin" class="w-20 h-20 rounded-full">
+                    @else
+                        <img src="{{ asset('assets/dist/img/other-user.jpg') }}" alt="User" class="w-20 h-20 rounded-full">
+                    @endif
+                </div>
                 <span class="text-sm text-black">Admin</span>
             </div>
             <nav class="space-y-4">
@@ -20,11 +28,10 @@
                         <span class="ml-auto text-xs" x-show="saleDropdown">&#9650;</span>
                     </a>
                     <div x-show="saleDropdown" class="pl-8">
-                        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">New Sale</a>
-                        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Manage Sale</a>
+                        <a href="{{route('sale.create')}}" class="block px-4 py-2 rounded hover:bg-gray-600">New Sale</a>
+                        <a href="{{route('sale.index')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Manage Sale</a>
                         <a href="{{route('manage.add')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Add Sales term</a>
                         <a href="{{route('manage.list')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Sales term list</a>
-                        
                     </div>
                 </div>
 
@@ -64,7 +71,7 @@
                     <div x-show="productDropdown" class="pl-8">
                         <a href="{{url('/add')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Add Category</a>
                         <a href="{{url('/list')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Category List</a>
-                        <a href="{{route('unit.add')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Add Unit </a>
+                        <a href="{{route('unit.add')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Add Unit</a>
                         <a href="{{route('unit.list')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Unit List</a>
                         <a href="{{route('product.add')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Add Product</a>
                         <a href="{{route('product.list')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Manage Product</a>
@@ -79,8 +86,8 @@
                         <span class="ml-auto text-xs" x-show="purchaseDropdown">&#9650;</span>
                     </a>
                     <div x-show="purchaseDropdown" class="pl-8">
-                        <a href="{{route('purchase.create')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Add Purchase</a>
-                        <a href="{{route('purchase.index')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Purchase List</a>
+                        <a href="{{route('purchases.create')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Add Purchase</a>
+                        <a href="{{route('purchases.index')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Purchase List</a>
                     </div>
                 </div>
 
@@ -93,11 +100,8 @@
                     </a>
                     <div x-show="stockDropdown" class="pl-8">
                         <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Stock Report</a>
-                        
                     </div>
                 </div>
-
-                
 
                 <!-- Reports Dropdown -->
                 <div @click="reportsDropdown = !reportsDropdown" class="cursor-pointer">
@@ -114,9 +118,10 @@
             </nav>
         </div>
     </div>
+</div>
 
-    <!-- Sidebar Toggle Button -->
-    <div @click="open = !open"
-        class="fixed z-30 p-2 text-black rounded-full cursor-pointer top-2 left-2">
-        <span class="text-lg">&#9776;</span> <!-- Three horizontal lines icon -->
-    </div>
+<!-- Sidebar Toggle Button -->
+<div @click="open = !open"
+    class="fixed z-30 p-2 text-black rounded-full cursor-pointer top-2 left-2">
+    <span class="text-lg">&#9776;</span> <!-- Three horizontal lines icon -->
+</div>

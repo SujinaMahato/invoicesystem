@@ -57,3 +57,7 @@
 
 </body>
 </html>
+Route::resource('purchase', PurchaseController::class);
+/*Route::get('/add-purchase', function () {
+    return view('admin.purchase.add-purchase');
+});*/

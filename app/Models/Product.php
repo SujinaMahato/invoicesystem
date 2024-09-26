@@ -16,4 +16,8 @@ class Product extends Model
 {
     return $this->belongsTo(Supplier::class, 'supplier_id');
 }
+public function purchase()
+    {
+        return $this->belongsTo(Purchase::class);
+    }
 }
