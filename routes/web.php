@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SalesReturnController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -93,6 +94,9 @@ Route::post('/admin/stocks', [StockController::class, 'store'])->name('stocks.st
 Route::get('/admin/stocks/edit/{id}', [StockController::class, 'edit'])->name('stocks.edit');
 Route::put('/admin/stocks/{id}', [StockController::class, 'update'])->name('stocks.update');
 Route::delete('/admin/stocks/{id}', [StockController::class, 'destroy'])->name('stocks.delete');
+
+//SalesReturn Controller
+Route::resource('sales_returns', SalesReturnController::class);
 
 
 

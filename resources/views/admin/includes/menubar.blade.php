@@ -111,8 +111,8 @@
                         <span class="ml-auto text-xs" x-show="reportsDropdown">&#9650;</span>
                     </a>
                     <div x-show="reportsDropdown" class="pl-8">
-                        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Daily Report</a>
-                        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Monthly Report</a>
+                        <a href="{{route('sales_returns.index')}}" class="block px-4 py-2 rounded hover:bg-gray-600">SalesReturn Report</a>
+                        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">SupplierReturn Report</a>
                     </div>
                 </div>
             </nav>
