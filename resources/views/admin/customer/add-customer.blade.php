@@ -57,7 +57,7 @@
                 <a href="{{ url('/dashboard') }}" class="text-purple-500 hover:text-blue-700">Dashboard</a>
             </div>
             <div class="text-right">
-                <button type="submit" class="px-4 py-2 text-white bg-purple-500 rounded-lg shadow-lg hover:bg-pink-600">
+                <button type="submit" class="px-4 py-2 text-white bg-purple-500 rounded-lg shadow-lg hover:bg-purple-600">
                     Save
                 </button>
             </div>

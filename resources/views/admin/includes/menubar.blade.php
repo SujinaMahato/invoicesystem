@@ -99,7 +99,7 @@
                         <span class="ml-auto text-xs" x-show="stockDropdown">&#9650;</span>
                     </a>
                     <div x-show="stockDropdown" class="pl-8">
-                        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Stock Report</a>
+                        <a href="{{route('stocks.list')}}" class="block px-4 py-2 rounded hover:bg-gray-600">Stock Report</a>
                     </div>
                 </div>
 
