@@ -10,6 +10,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SalesReturnController;
+use App\Http\Controllers\SupplierReturnController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -97,6 +98,20 @@ Route::delete('/admin/stocks/{id}', [StockController::class, 'destroy'])->name('
 
 //SalesReturn Controller
 Route::resource('sales_returns', SalesReturnController::class);
+
+//supplier Return controller
+Route::get('/supplier-return', [SupplierReturnController::class, 'index'])->name('supplier-return');
+
+Route::get('/supplier-return/form', function () {
+    return view('admin.report.form');})->name('supplier-return.form');
+
+Route::post('/form', [SupplierReturnController::class, 'store'])->name('submit-form');
+Route::get('/supplier-return/form', [SupplierReturnController::class, 'create'])->name('supplier-return.form');
+Route::get('/report',[SupplierReturnController::class,'report'])->name('report.list');
+Route::get('supplier-return/{id}/edit', [SupplierReturnController::class, 'edit'])->name('supplier-return.edit');
+Route::put('supplier-return/{id}', [SupplierReturnController::class, 'update'])->name('supplier-return.update');
+
+Route::delete('/supplier-return/delete/{id}', [SupplierReturnController::class, 'destroy'])->name('supplier-return.delete');
 
 
 

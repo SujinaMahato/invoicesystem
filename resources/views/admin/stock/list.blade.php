@@ -11,10 +11,18 @@
                 {{ session('success') }}
             </div>
         @endif
-
-        <div class="flex justify-end mb-4">
-            <a href="{{ route('stocks.add') }}" class="inline-block px-4 py-2 text-white bg-purple-500 rounded">Add New Stock</a>
+        <div class="flex justify-between mb-4">
+            <!-- Dashboard Button on the left -->
+            <a href="{{ url('dashboard') }}" class="inline-block px-4 py-2 text-white bg-purple-600 rounded hover:bg-purple-700">
+                Dashboard
+            </a>
+        
+            <!-- Add New Stock Button on the right -->
+            <a href="{{ route('stocks.add') }}" class="inline-block px-4 py-2 text-white bg-purple-500 rounded hover:bg-purple-600">
+                Add New Stock
+            </a>
         </div>
+        
 
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border border-gray-300">

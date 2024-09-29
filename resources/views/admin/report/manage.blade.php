@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container p-4 mx-auto">
-    <h1 class="mb-4 text-3xl font-bold">Sales Returns</h1>
+   
 
     <!-- Link to the form page for creating new sales return -->
     <div class="flex justify-end mt-6 space-x-4">

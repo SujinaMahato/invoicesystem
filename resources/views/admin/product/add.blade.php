@@ -2,8 +2,16 @@
 
 @section('content')
 <div class="container p-4 mx-auto bg-white rounded-lg shadow">
-    <h1 class="mb-4 text-2xl font-bold">Add Product</h1>
-
+    <div class="flex items-center justify-between mb-4">
+        <!-- Add Product Heading on the left -->
+        <h1 class="text-2xl font-bold">Add Product</h1>
+    
+        <!-- Dashboard Button on the right -->
+        <a href="{{ url('dashboard') }}" class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-purple-700">
+            Dashboard
+        </a>
+    </div>
+    
     <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Barcode/QR Code -->

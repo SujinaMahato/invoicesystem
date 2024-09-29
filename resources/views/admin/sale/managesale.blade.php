@@ -7,9 +7,18 @@
     <form method="GET" action="{{ route('sale.index') }}" class="mb-6">
        
          <!-- Action Buttons -->
-         <div class="flex justify-end mt-6 space-x-4">
-            <a href="{{ route('sale.create') }}" class="px-4 py-2 text-white bg-purple-500 rounded-md">+ New Sale</a>
+         <div class="flex justify-between mt-6 space-x-4">
+            <!-- Dashboard Button on the left -->
+            <a href="{{ url('dashboard') }}" class="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-purple-700">
+                Dashboard
+            </a>
+        
+            <!-- + New Sale Button on the right -->
+            <a href="{{ route('sale.create') }}" class="px-4 py-2 text-white bg-purple-500 rounded-md hover:bg-purple-600">
+                + New Sale
+            </a>
         </div>
+        
     </form>
 
     <!-- Sale List Table -->
