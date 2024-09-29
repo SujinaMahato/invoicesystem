@@ -55,23 +55,7 @@
                 </div>
             </form>
 
-            <!-- Sample User Credentials -->
-            <table class="w-full mt-4 rounded-lg bg-gray-50">
-                <thead>
-                    <tr>
-                        <th class="px-4 py-2 text-left">Email</th>
-                        <th class="px-4 py-2 text-left">Password</th>
-                        <th class="px-4 py-2 text-left">Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="px-4 py-2 border">admin@gmail.com</td>
-                        <td class="px-4 py-2 border">password</td>
-                        <td class="px-4 py-2 border">Admin</td>
-                    </tr>
-                </tbody>
-            </table>
+           
         </div>
     </div>
 </body>

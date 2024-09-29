@@ -116,6 +116,18 @@
                         <a href="{{route('supplier-return')}}" class="block px-4 py-2 rounded hover:bg-gray-600">SupplierReturn Report</a>
                     </div>
                 </div>
+              <!-- Logout Section -->
+              <!-- Logout Section -->
+<div class="mt-2 cursor-pointer">
+    <form action="{{ route('logout') }}" method="POST" class="flex items-center">
+        @csrf
+        <button type="submit" class="flex items-center px-4 py-2 rounded hover:bg-gray-600">
+            <img src="/images/logout1.png" alt="Logout" class="w-5 h-5 mr-2">Logout
+        </button>
+    </form>
+</div>
+
+
             </nav>
         </div>
     </div>

@@ -113,6 +113,9 @@ Route::put('supplier-return/{id}', [SupplierReturnController::class, 'update'])-
 
 Route::delete('/supplier-return/delete/{id}', [SupplierReturnController::class, 'destroy'])->name('supplier-return.delete');
 
+//Logout Controller
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 
 
