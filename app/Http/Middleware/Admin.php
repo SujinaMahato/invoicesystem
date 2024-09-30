@@ -14,7 +14,7 @@ class Admin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    /*public function handle(Request $request, Closure $next)
     {
         if (Auth::user()->usertype==='admin') {
             return $next($request);
@@ -22,6 +22,15 @@ class Admin
     
        
         abort(403, 'Unauthorized, you cannot visit this page');
+    }*/
+    public function handle(Request $request, Closure $next)
+    {
+        if (Auth::user() && Auth::user()->usertype === 'admin') {
+            return $next($request);
+        }
+
+        abort(403, 'Unauthorized, you cannot visit this page');
     }
+   
         
 }

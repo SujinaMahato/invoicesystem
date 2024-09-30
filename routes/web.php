@@ -27,9 +27,16 @@ Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('
 Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 Route::get('/categories/add',[CategoryController::class,'store'])->name('categories.add');
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
+
+//Dashboard Controller
+
+Route::middleware(['auth'])->group(function () {
+Route::middleware(['admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
+
 
 // customer controller
 Route::resource('customers', CustomerController::class);
@@ -115,6 +122,7 @@ Route::delete('/supplier-return/delete/{id}', [SupplierReturnController::class, 
 
 //Logout Controller
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
 
 
 
